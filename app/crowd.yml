@@ -4,7 +4,7 @@ settings:
   aggregator: consolidator
   verbose: false
   env:
-    application_hostname:     # Crowd DC hostname without protocol and port e.g. test-crowd.atlassian.com or localhost
+    application_hostname: test_crowd_instance.atlassian.co    # Crowd DC hostname without protocol and port e.g. test-crowd.atlassian.com or localhost
     application_protocol: http      # http or https
     application_port: 80            # 80, 443, 8080, 2990, etc
     secure: True                    # Set False to allow insecure connections, e.g. when using self-signed SSL certificate
@@ -31,17 +31,17 @@ services:
       - python util/data_preparation/crowd_prepare_data.py
       - python util/data_preparation/crowd_sync_check.py
     shutdown:
-#      - python util/post_run/jmeter_post_check.py
+      - python util/post_run/jmeter_post_check.py
       - python util/jtl_convertor/jtls-to-csv.py kpi.jtl selenium.jtl
-#    post-process:
-#      - python util/analytics/analytics.py crowd
-#      - python util/post_run/cleanup_results_dir.py
-#execution:
-#  - scenario: ${load_executor}
-#    executor: ${load_executor}
-#    concurrency: ${concurrency}
-#    hold-for: ${test_duration}
-#    ramp-up: ${ramp-up}
+    post-process:
+      - python util/analytics/analytics.py crowd
+      - python util/post_run/cleanup_results_dir.py
+execution:
+  - scenario: ${load_executor}
+    executor: ${load_executor}
+    concurrency: ${concurrency}
+    hold-for: ${test_duration}
+    ramp-up: ${ramp-up}
 scenarios:
   jmeter:
     script: jmeter/crowd.jmx
