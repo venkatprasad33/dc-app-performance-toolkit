@@ -11105,7 +11105,7 @@ if (response_data.username != vars.get(&quot;app_specific_username&quot;)) {
                 <stringProp name="HTTPSampler.port"></stringProp>
                 <stringProp name="HTTPSampler.protocol"></stringProp>
                 <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">${application.postfix}/rest/spacefields/1.0/utility/list/fields/space/key/DT</stringProp>
+                <stringProp name="HTTPSampler.path">${application.postfix}/rest/spacefields/1.0/utility/list/fields/space/key/${space_key}</stringProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -11134,7 +11134,7 @@ if (response_data.username != vars.get(&quot;app_specific_username&quot;)) {
                     <elementProp name="" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.value">{&#xd;
-	&quot;spaceKey&quot;: &quot;DT&quot;,&#xd;
+	&quot;spaceKey&quot;: &quot;${space_key}&quot;,&#xd;
 	&quot;fieldName&quot;: &quot;Organization&quot;,&#xd;
 	&quot;fieldValue&quot;: &quot;ILA eSolution&quot;&#xd;
 }&#xd;
